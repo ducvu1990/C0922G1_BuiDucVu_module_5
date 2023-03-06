@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout::head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="/layout::header"></div>
+<div class="row bg-success">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 bg-">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand text-white" th:href="@{/furama}">Home</a>
+                <div class="collapse navbar-collapse" id="navbarScroll">
+                    <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+
+                        <!--                        Employee button-->
+                        <li class="nav-item">
+                            <a class="nav-link active text-white" aria-current="page"
+                               href="/Employees">Employee</a>
+                        </li>
+                        <!--                        Customer button-->
+                        <li class="nav-item">
+                            <a class="nav-link text-white" th:href="@{/furama/search}">Customer</a>
+                        </li>
+
+                        <!--                        Service button-->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-white" th:href="@{/facility/search}">Service</a>
+                        </li>
+
+                        <!--                        Contrac button-->
+                        <li class="nav-item">
+                            <a class="nav-link text-white" th:href="@{/contract/search}">Contrac</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Name Search" aria-label="Search"
+                               name="nameSearch">
+                        <input class="form-control me-2" type="search" placeholder="Email Search" aria-label="Search"
+                               name="email">
+                        <select name="id" class="form-select" aria-label="Default select example">
+                            <option value="" disabled selected>Customer Type Search</option>
+                            <option th:each="customerType:${customerTypes}"
+                                    th:value="${customerType.id}"
+                                    th:text="${customerType.name}">
+                            </option>
+                        </select>
+                        <button class="btn btn-primary text-white" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+<div class="row">
+    <div th:replace="/layout::leftContent"></div>
+    <div class="col-md-11 vh-100">
+        <p>
+            <button type="button"
+                    class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
+                Add New Customer
+            </button>
+        </p>
+        <table id="table123" class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th hidden scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Birthday</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Id Card</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Email</th>
+                <th scope="col">Customer Type Id</th>
+                <th scope="col">Address</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr th:each="customer,status:${customerPage}">
+                <td th:text="${status.count}"></td>
+                <td hidden th:text="${customer.getId()}"></td>
+                <td th:text="${customer.getName()}"></td>
+                <td th:text="${customer.getDateOfBirth()}"></td>
+
+                <td th:if="${customer.isGender()== true}" th:text="Nam"></td>
+                <td th:if="${customer.isGender()== false}" th:text="Nữ"></td>
+
+                <td th:text="${customer.getIdCard()}"></td>
+                <td th:text="${customer.getPhoneNumber()}"></td>
+                <td th:text="${customer.getEmail()}"></td>
+                <td th:text="${customer.getCustomerType().getName()}"></td>
+                <td th:text="${customer.getAddress()}"></td>
+                <td>
+                    <button th:attr="onclick=|infoEdit('${customer.getId()}','${customer.getName()}','${customer.getDateOfBirth()}',
+                    '${customer.isGender()}','${customer.getIdCard()}','${customer.getPhoneNumber()}','${customer.getEmail()}',
+                    '${customer.getCustomerType().getId()}','${customer.getAddress()}')|" type="button"
+                            class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">
+                        Edit
+                    </button>
+                </td>
+                <td>
+                    <button th:attr="onclick=|infoDelete('${customer.getId()}','${customer.getName()}')|" type="button"
+                            class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+        <span>
+    <a th:if="${customerPage.hasPrevious()}"
+       th:href="@{/furama/search(page=${customerPage.number}-1,name=${name},email=${email},id=${id})}">Trước</a></span>
+        <span th:text="${customerPage.number}+1+'/'"></span>
+        <span th:text="${customerPage.totalPages}"></span>
+        <span><a th:if="${customerPage.hasNext()}"
+                 th:href="@{/furama/search(page=${customerPage.number}+1,name=${name},email=${email},id=${id})}">Sau</a></span>
+    </div>
+</div>
+
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Customer</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form th:action="@{/furama/delete}" method="post">
+                <div class="modal-body">
+                    <input hidden type="text" id="deleteId" name="deleteId">
+                    <span>Do you want to delete an Customer </span>
+                    <span style="color: red" id="deleteName"></span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-sm btn-primary">Delete</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Edit Customer</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form th:action="@{/furama/edit}" th:object="${customerDTO}" method="post">
+                <div class="modal-body">
+                    <table class="table">
+                        <thead>
+                        <tr hidden>
+                            <th scope="col">ID</th>
+                            <td><input type="text" id="id" th:field="*{id}"></td>
+                        </tr>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <td><input type="text" id="name" th:field="*{name}"></td>
+                        </tr>
+                        <tr>
+                            <th scope="col">Birthday</th>
+                            <td><input type="text" id="birthday" th:field="*{dateOfBirth}"></td>
+                        </tr>
+                        <tr>
+                            <th scope="col">Gender</th>
+                            <td>
+                                <input type="radio" id="genderTrue" th:field="*{gender}" th:value="true">Male
+                                <input type="radio" id="genderFalse" th:field="*{gender}" th:value="false">Female
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="col">Id Card</th>
+                            <td><input type="text" id="idCard" th:field="*{idCard}"></td>
+                        </tr>
+                        <tr>
+                            <th scope="col">Phone</th>
+                            <td><input type="text" id="phone" th:field="*{phoneNumber}"></td>
+                        </tr>
+                        <tr>
+                            <th scope="col">Email</th>
+                            <td><input type="text" id="email" th:field="*{email}"></td>
+                        </tr>
+                        <tr>
+                            <th scope="col">Customer Type</th>
+                            <td>
+                                <span ></span>
+                                <select th:field="*{customerType}" id="cuType">
+                                    <option th:each="customerType:${customerTypes}"
+                                            th:value="${customerType.id}"
+                                            th:text="${customerType.name}">
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="col">Address</th>
+                            <td><input type="text" id="address" th:field="*{address}"></td>
+                        </tr>
+                        </thead>
+                    </table>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-sm btn-primary">Edit</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+<!--Add New Customer-->
+<div th:class="${hasErrors == 'true' ? 'modal fade show' : 'modal fade'}"
+     th:style="${hasErrors == 'true' ? 'display: block' : 'display: none'}"
+     id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createModalLabel">Add New Customer</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="onCloseModal()"></button>
+            </div>
+            <form class="form" th:action="@{/furama/save}" th:object="${customerDTO}" method="post">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <td>
+                            <input  required title=" Tên không đúng định dạng"
+                                    type="text" placeholder="nhập tên" th:field="*{name}">
+                            <span style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <th scope="col">Birthday</th>
+                        <td><input type="date" th:field="*{dateOfBirth}">
+                        <span style="color: red" th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="col">Gender</th>
+                        <td>
+                            <input type="radio" th:field="*{gender}" th:value="true">Male
+                            <input type="radio" th:field="*{gender}" th:value="false">Female
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="col">Id Card</th>
+                        <td>
+                            <input type="text" th:field="*{idCard}"><br>
+                            <span style="color: red" th:if="${#fields.hasErrors('idCard')}" th:errors="*{idCard}"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="col">Phone</th>
+                        <td>
+                            <input type="text" th:field="*{phoneNumber}"><br>
+                            <span style="color: red" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="col">Email</th>
+                        <td>
+
+                            <input type="text" th:field="*{email}"><br>
+                            <span style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="col">Customer Type</th>
+                        <td>
+                            <select th:field="*{customerType}">
+                                <option th:each="customerType:${customerTypes}"
+                                        th:value="${customerType.id}"
+                                        th:text="${customerType.name}">
+                                </option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="col">Address</th>
+                        <td>
+                            <input th:field="*{address}">
+                            <span th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></span> </td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="col"></th>
+                        <td><input id="btnSave" type="submit" value="Add new customers"></td>
+                    </tr>
+                    </thead>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+<footer th:replace="/layout::footer"></footer>
+</body>
+<script>
+    function onCloseModal() {
+        document.getElementById('createModal').style.display = 'none';
+        window.location.href = "/furama/search";
+    }
+    function infoDelete(id, name) {
+        document.getElementById("deleteId").value = id;
+        document.getElementById("deleteName").innerText = name;
+    }
+    function infoEdit(id,name,dateOfBirth,gender,idCard,phoneNumber,email, customerTypeName,address){
+        document.getElementById("id").value=id;
+        document.getElementById("name").value=name;
+        document.getElementById("birthday").value=dateOfBirth;
+        if (gender){
+            document.getElementById("genderTrue").value=gender;
+        }else {
+            document.getElementById("genderFalse").value=gender;
+        }
+        document.getElementById("idCard").value=idCard;
+        document.getElementById("phone").value=phoneNumber;
+        document.getElementById("email").value=email;
+        document.getElementById("cuType").value=customerTypeName;
+        document.getElementById("address").value=address;
+    }
+</script>
+</html>
