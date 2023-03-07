@@ -1,0 +1,77 @@
+<div class="row">
+  <div class="col-md-1 justify-content-center d-flex" style="background-color: #a3cfbb; top: auto">
+    <ul class="list-group">
+      <li class="list-group-item disabled" style="font-size: x-large; background-color: #a3cfbb">item 0
+      </li>
+      <li class="list-group-item" style="font-size: x-large; background-color: #a3cfbb">item 1</li>
+      <li class="list-group-item" style="font-size: x-large; background-color: #a3cfbb">item 2</li>
+      <li class="list-group-item" style="font-size: x-large; background-color: #a3cfbb">item 3</li>
+      <li class="list-group-item" style="font-size: x-large; background-color: #a3cfbb">item 4</li>
+    </ul>
+  </div>
+  <div class="col-md-11 justify-content-center align-items-center d-flex">
+    <div class="card text-bg-dark px-0 justify-content-center align-items-center d-flex w-100 h-100">
+      <img
+        src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/23/cf/6a/fa/courtyard-night-time.jpg?w=1400&h=-1&s=1"
+        class="card-img"
+        alt="img">
+      <div class="card-img-overlay px-0">
+        <p>
+          <button type="button"
+                  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
+            Add New Customer
+          </button>
+        </p>
+        <table id="table123" class="table">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th hidden scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Birthday</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Id Card</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Email</th>
+            <th scope="col">Customer Type Id</th>
+            <th scope="col">Address</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+          </thead>
+          <tbody>
+
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+              <button type="button"
+                      class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">
+                Edit
+              </button>
+            </td>
+            <td>
+              <button type="button"
+                      class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                Delete
+              </button>
+            </td>
+          </tr>
+
+          </tbody>
+        </table>
+        <span><a>Trước</a>
+        </span>
+        <span>/</span>
+        <span></span>
+        <span><a>Sau</a></span>
+      </div>
+    </div>
+  </div>
+</div>
