@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <form>
+        <div class="form-group">
+          <h1 class="text-center">Choose Color</h1>
+          <label for="inputColor" class="text-center">Choose Color</label>
+          <input #element (change)="changeColor(element.value)"
+                 type="color" class="form-control form-control-sm text-center" id="inputColor" placeholder="color input">
+          <small class="form-text text-muted">Choose Color</small>
+          <h1 [style.color]="color" class="text-center">hello angular</h1>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

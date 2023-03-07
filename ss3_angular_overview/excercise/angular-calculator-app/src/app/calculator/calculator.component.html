@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <form>
+        <div class="form-group">
+          <h1 class="text-center">Calculator</h1>
+          <label for="inputNumber1" class="text-center">Số thứ 1:</label>
+          <input #soThuNhat
+            type="number" class="form-control form-control-sm text-center" id="inputNumber1" placeholder="Nhập vào số thứ nhất">
+          <small class="form-text text-muted">Nhập vào số thứ nhất</small>
+          <label for="inputNumber2" class="text-center">Số thứ 2:</label>
+          <input #soThuHai
+            type="number" class="form-control form-control-sm text-center" id="inputNumber2" placeholder="Nhập vào số thứ hai">
+          <small class="form-text text-muted">Nhập vào số thứ hai</small>
+          <button (click)="tong(soThuNhat.value,soThuHai.value)"
+            type="button" class="btn btn-primary mr-2">+</button>
+          <button (click)="hieu(soThuNhat.value,soThuHai.value)"
+            type="button" class="btn btn-primary mr-2">-</button>
+          <button (click)="nhan(soThuNhat.value,soThuHai.value)"
+            type="button" class="btn btn-primary mr-2">x</button>
+          <button (click)="chia(soThuNhat.value,soThuHai.value)"
+            type="button" class="btn btn-primary mr-2">/</button>
+          <br>
+          <label for="inputNumber2" class="text-center">Kế quả là:</label>
+          <input type="number" [value]="result"
+                 readonly class="form-control form-control-sm text-center mr-2" placeholder="Kết quả">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

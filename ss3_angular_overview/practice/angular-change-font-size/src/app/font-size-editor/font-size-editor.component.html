@@ -1,0 +1,11 @@
+<p>Font Size Editor</p>
+<div class="form-group">
+  <label for="formSize">Enter font size (px):</label>
+  <input #element [(ngModel)]="fontSize"
+         class="form-control" name="" id="formSize" aria-describedby="helpId" placeholder=""
+         type="range" min="9" max="72" value="18">
+  <small id="helpId" class="form-text text-muted">Help text</small>
+</div>
+<p class="output" [style.font-size.px]="fontSize">
+  This is a paragraph.
+</p>
