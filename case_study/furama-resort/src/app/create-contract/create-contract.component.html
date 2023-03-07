@@ -1,0 +1,107 @@
+<div class="row">
+  <div class="col-md-1 justify-content-center d-flex" style="background-color: #a3cfbb; top: auto">
+    <ul class="list-group">
+      <li class="list-group-item disabled" style="font-size: x-large; background-color: #a3cfbb">item 0
+      </li>
+      <li class="list-group-item" style="font-size: x-large; background-color: #a3cfbb">item 1</li>
+      <li class="list-group-item" style="font-size: x-large; background-color: #a3cfbb">item 2</li>
+      <li class="list-group-item" style="font-size: x-large; background-color: #a3cfbb">item 3</li>
+      <li class="list-group-item" style="font-size: x-large; background-color: #a3cfbb">item 4</li>
+    </ul>
+  </div>
+  <div class="col-md-11 justify-content-center align-items-center d-flex">
+    <div class="card text-bg-dark px-0 justify-content-center align-items-center d-flex w-100 h-100">
+      <img
+        src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/23/cf/6a/fa/courtyard-night-time.jpg?w=1400&h=-1&s=1"
+        class="card-img"
+        alt="img">
+      <div class="card-img-overlay px-0">
+        <form  method="post">
+          <div class="modal-body">
+            <table class="table">
+              <thead>
+              <tr>
+                <th scope="col">Start Date</th>
+                <td><input type="date" id="startDate" >
+                  <span></span>
+                </td>
+              </tr>
+              <tr>
+                <th scope="col">End Date</th>
+                <td><input type="date" id="endDate" >
+                  <span ></span>
+                </td>
+              </tr>
+              <tr>
+                <th scope="col">Deposit</th>
+                <td><input type="text" id="deposit" ></td>
+              </tr>
+              <tr>
+                <th scope="col">Total Cost</th>
+                <td><input type="text" id="totalCost" readonly></td>
+              </tr>
+              <tr>
+                <th scope="col">Customer</th>
+                <td>
+                  <select id="customer">
+                    <option value="" disabled selected>Choose Customer</option>
+                    <option >
+                    </option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <th scope="col">Facility</th>
+                <td>
+                  <select  id="facility">
+                    <option value="" disabled selected>Choose Facility</option>
+                    <option >
+                    </option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <th scope="col">Employee</th>
+                <td>
+                  <select id="employee">
+                    <option value="" disabled selected>Choose Employee</option>
+                    <option>
+                    </option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <th></th>
+                <td></td>
+              </tr>
+              </thead>
+            </table>
+            <button type="button" class="btn btn-sm btn-primary" onclick="showFormCreateContractDetail()">+
+            </button>
+            <table id="addContractDetail">
+              <thead>
+              <tr>
+                <td>
+                  <input type="checkbox"/>
+                </td>
+                <td>
+                  <input type="text">
+                </td>
+                <td>
+                  <input style="width: 100px" type="number" id="quantityAttachFacility"/>
+                </td>
+              </tr>
+              </thead>
+            </table>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-sm btn-secondary" >Cancel
+            </button>
+            <button type="button" class="btn btn-sm btn-primary">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
