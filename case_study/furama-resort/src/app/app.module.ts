@@ -8,6 +8,8 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { FacilitysComponent } from './facilitys/facilitys.component';
 import { LeftContentComponent } from './left-content/left-content.component';
+import { EditFacilityComponent } from './edit-facility/edit-facility.component';
+import { CreateFacilityComponent } from './create-facility/create-facility.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { LeftContentComponent } from './left-content/left-content.component';
     HomeComponent,
     FacilitysComponent,
     LeftContentComponent,
+    EditFacilityComponent,
+    CreateFacilityComponent,
   ],
   imports: [
     BrowserModule,
