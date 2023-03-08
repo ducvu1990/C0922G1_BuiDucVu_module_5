@@ -1,30 +1,39 @@
 <div class="row">
-  <div class="col-md-1 justify-content-center d-flex" style="background-color: #a3cfbb; top: auto">
+  <div class="col-md-1 justify-content-center rounded-pill d-flex" style="overflow: hidden; top: auto; border: 1px solid white">
     <ul class="list-group">
-      <li class="list-group-item disabled" style="font-size: x-large; background-color: #a3cfbb">item 0
+      <li class="list-group-item transparent-bg text-warning" style="font-size: x-large">item 0
       </li>
-      <li class="list-group-item" style="font-size: x-large; background-color: #a3cfbb">item 1</li>
-      <li class="list-group-item" style="font-size: x-large; background-color: #a3cfbb">item 2</li>
-      <li class="list-group-item" style="font-size: x-large; background-color: #a3cfbb">item 3</li>
-      <li class="list-group-item" style="font-size: x-large; background-color: #a3cfbb">item 4</li>
+      <li class="list-group-item transparent-bg text-warning" style="font-size: x-large">item 1</li>
+      <li class="list-group-item transparent-bg text-warning" style="font-size: x-large">item 2</li>
+      <li class="list-group-item transparent-bg text-warning" style="font-size: x-large">item 3</li>
+      <li class="list-group-item transparent-bg text-warning" style="font-size: x-large">item 4</li>
+      <li class="list-group-item transparent-bg text-warning" style="font-size: x-large">item 5</li>
+      <li class="list-group-item transparent-bg text-warning" style="font-size: x-large">item 6</li>
+      <li class="list-group-item transparent-bg text-warning" style="font-size: x-large">item 7</li>
+      <li class="list-group-item transparent-bg text-warning" style="font-size: x-large">item 8</li>
+      <li class="list-group-item transparent-bg text-warning" style="font-size: x-large">item 9</li>
+      <li class="list-group-item transparent-bg text-warning" style="font-size: x-large">item 10</li>
+      <li class="list-group-item transparent-bg text-warning" style="font-size: x-large">item 11</li>
+      <li class="list-group-item transparent-bg text-warning" style="font-size: x-large">item 12</li>
     </ul>
   </div>
   <div class="col-md-11 justify-content-center align-items-center d-flex">
-    <div class="card text-bg-dark px-0 justify-content-center align-items-center d-flex w-100 h-100">
-      <img
-        src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/23/cf/6a/fa/courtyard-night-time.jpg?w=1400&h=-1&s=1"
-        class="card-img"
-        alt="img">
-      <div class="card-img-overlay masonry">
-
+    <div class="card text-bg-dark px-0 justify-content-center align-items-center d-flex w-100 h-100 bg-transparent p-3"
+         style="background-color: rgba(0, 255, 0, 0.5);">
+      <p>
+        <button type="button"
+                class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
+          Add New Facility
+        </button>
+      </p>
         <div class="row row-cols-1 row-cols-md-5 g-4">
 
-          <div class="col">
+          <div class="col" *ngFor="let facility of facilitys">
             <div class="card h-50">
-              <img src="https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Ocean-Suite-Feature-370x239.jpg" class="card-img-top" alt="...">
+              <img src="{{facility.descriptionOtherConvenience}}" class="card-img-top" alt="...">
               <div class="card-body">
-                <h5 class="card-title">Villa</h5>
-                <p class="card-text">Không gian thoáng mát</p>
+                <h5 class="card-title">{{facility.facilityType}}</h5>
+                <p class="card-text">{{facility.standardRoom}}</p>
                 <a href="#" class="btn btn-primary mx-1">Edit</a>
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteModal">
@@ -33,106 +42,15 @@
               </div>
             </div>
           </div>
-
-          <div class="col">
-            <div class="card h-50">
-              <img src="https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Ocean-Suite-Feature-370x239.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Villa</h5>
-                <p class="card-text">Không gian thoáng mát</p>
-                <a href="#" class="btn btn-primary mx-1">Edit</a>
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                  Delete
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="card h-50">
-              <img src="https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Ocean-Suite-Feature-370x239.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Villa</h5>
-                <p class="card-text">Không gian thoáng mát</p>
-                <a href="#" class="btn btn-primary mx-1">Edit</a>
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                  Delete
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="card h-50">
-              <img src="https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Ocean-Suite-Feature-370x239.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Villa</h5>
-                <p class="card-text">Không gian thoáng mát</p>
-                <a href="#" class="btn btn-primary mx-1">Edit</a>
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                  Delete
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="card h-50">
-              <img src="https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Ocean-Suite-Feature-370x239.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Villa</h5>
-                <p class="card-text">Không gian thoáng mát</p>
-                <a href="#" class="btn btn-primary mx-1">Edit</a>
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                  Delete
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="card h-50">
-              <img src="https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Ocean-Suite-Feature-370x239.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Villa</h5>
-                <p class="card-text">Không gian thoáng mát</p>
-                <a href="#" class="btn btn-primary mx-1">Edit</a>
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                  Delete
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="card h-50">
-              <img src="https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Ocean-Suite-Feature-370x239.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Villa</h5>
-                <p class="card-text">Không gian thoáng mát</p>
-                <a href="#" class="btn btn-primary mx-1">Edit</a>
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                  Delete
-                </button>
-              </div>
-            </div>
-          </div>
-
+          
         </div>
-      </div>
     </div>
   </div>
 </div>
 
 
 
-<!-- Modal -->
+<!--Delete Modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">

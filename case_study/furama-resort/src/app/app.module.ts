@@ -7,7 +7,6 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { FacilitysComponent } from './facilitys/facilitys.component';
-import { LeftContentComponent } from './left-content/left-content.component';
 import { EditFacilityComponent } from './edit-facility/edit-facility.component';
 import { CreateFacilityComponent } from './create-facility/create-facility.component';
 import { CustomersComponent } from './customers/customers.component';
@@ -23,7 +22,6 @@ import { CreateContractComponent } from './create-contract/create-contract.compo
     FooterComponent,
     HomeComponent,
     FacilitysComponent,
-    LeftContentComponent,
     EditFacilityComponent,
     CreateFacilityComponent,
     CustomersComponent,
