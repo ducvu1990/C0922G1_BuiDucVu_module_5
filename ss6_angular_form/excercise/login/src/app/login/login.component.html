@@ -1,0 +1,38 @@
+<h2 class="text-center">
+  Login
+</h2>
+<div class="col-md-8 offset-md-2">
+  <form [formGroup]="rfCustomer" (ngSubmit)="onSubmit()">
+    <table class="table">
+      <thead>
+      <tr>
+        <th for="email1">Email:</th>
+        <td>
+          <input type="text"
+                 class="form-control" formControlName="email1" id="email1" placeholder="Enter Email">
+          <small class="form-text text-danger"
+                 *ngIf="rfCustomer.controls.email1.touched && rfCustomer.controls.email1?.errors?.required">Phải nhập trường này.</small>
+          <small class="form-text text-danger"
+                 *ngIf="rfCustomer.controls.email1.touched && rfCustomer.controls.email1?.errors?.email">Chưa đúng định dạng email.</small>
+        </td>
+      </tr>
+
+      <tr>
+        <th for="password">Password:</th>
+        <td>
+          <input type="password"
+                 class="form-control" formControlName="password" id="password" placeholder="Enter Password">
+          <small class="form-text text-danger"
+                 *ngIf="rfCustomer.controls.password.touched && rfCustomer.controls.password?.errors?.required">Phải nhập trường này.</small>
+          <small class="form-text text-danger"
+                 *ngIf="rfCustomer.controls.password.touched && rfCustomer.controls.password?.errors?.minlength">Độ dài tối thiểu 6 ký tự.</small>
+        </td>
+      </tr>
+      <tr>
+        <th></th>
+        <td><button type="submit" [disabled]="rfCustomer.invalid" class="btn btn-primary">Submit</button></td>
+      </tr>
+      </thead>
+    </table>
+  </form>
+</div>

@@ -1,0 +1,102 @@
+<h2 class="text-center">
+  Form Create
+</h2>
+<div class="col-md-8 offset-md-2">
+  <form [formGroup]="rfCustomer" (ngSubmit)="onSubmit()">
+    <table class="table">
+      <thead>
+      <tr>
+        <th for="email1">Email:</th>
+        <td>
+          <input type="text"
+                 class="form-control" formControlName="email1" id="email1" placeholder="Enter Email">
+          <small class="form-text text-danger"
+                 *ngIf="rfCustomer.controls.email1.touched && rfCustomer.controls.email1?.errors?.required">Phải nhập trường này.</small>
+          <small class="form-text text-danger"
+                 *ngIf="rfCustomer.controls.email1.touched && rfCustomer.controls.email1?.errors?.email">Chưa đúng định dạng email.</small>
+        </td>
+      </tr>
+
+      <tr>
+        <th for="password">Password:</th>
+        <td>
+          <input type="password"
+                 class="form-control" formControlName="password" id="password" placeholder="Enter Password">
+          <small class="form-text text-danger"
+                 *ngIf="rfCustomer.controls.password.touched && rfCustomer.controls.password?.errors?.required">Phải nhập trường này.</small>
+          <small class="form-text text-danger"
+                 *ngIf="rfCustomer.controls.password.touched && rfCustomer.controls.password?.errors?.minlength">Độ dài tối thiểu 6 ký tự.</small>
+        </td>
+      </tr>
+
+      <tr>
+        <th for="confirmPassword">Confirm Password:</th>
+        <td>
+          <input type="password"
+                 class="form-control" formControlName="confirmPassword" id="confirmPassword" placeholder="Enter Password">
+          <small class="form-text text-danger"
+                 *ngIf="rfCustomer.controls.confirmPassword.touched && rfCustomer.controls.confirmPassword?.errors?.required">Phải nhập trường này.</small>
+          <small class="form-text text-danger"
+                 *ngIf="rfCustomer.controls.confirmPassword.touched && rfCustomer.controls.confirmPassword?.errors?.minlength">Độ dài tối thiểu 6 ký tự.</small>
+          <small class="form-text text-danger"
+                 *ngIf="rfCustomer.controls.confirmPassword.touched && rfCustomer.controls.confirmPassword.value != rfCustomer.controls.password.value">
+            Confirm Password phải giống với Password</small>
+        </td>
+      </tr>
+
+      <tr>
+        <th for="country">Country:</th>
+        <td>
+          <select class="form-control" formControlName="country" id="country">
+            <option value="">Choose a country</option>
+            <option *ngFor="let country of countrys" value="{{country}}">{{country}}</option>
+          </select>
+          <small  class="form-text text-danger"
+                  *ngIf="rfCustomer.controls.country.touched && rfCustomer.controls.country?.errors?.required">Phải nhập trường này.</small>
+        </td>
+      </tr>
+
+      <tr>
+        <th for="age">Age:</th>
+        <td>
+          <input type="number"
+                 class="form-control" formControlName="age" id="age" placeholder="Enter Age">
+          <small  class="form-text text-danger"
+                 *ngIf="rfCustomer.controls.age.touched && rfCustomer.controls.age?.errors?.required">Phải nhập trường này.</small>
+          <small class="form-text text-danger"
+                 *ngIf="rfCustomer.controls.age.touched && rfCustomer.controls.age?.errors?.invalidAge">Phải lớn hơn 18 tuổi.</small>
+        </td>
+      </tr>
+
+      <tr>
+        <th for="gender">Gender:</th>
+        <td>
+          <input type="radio" class="form-check-input" formControlName="gender" name="gender"  value="true" checked>
+          Nam
+          <input type="radio" class="form-check-input" formControlName="gender" name="gender"  value="false" checked>
+          Nữ
+          <small class="form-text text-danger"
+                 *ngIf="rfCustomer.controls.gender.touched && rfCustomer.controls.gender?.errors?.required">Phải chọn trường này.</small>
+        </td>
+      </tr>
+
+      <tr>
+        <th for="phone">Phone:</th>
+        <td>
+          <input type="text"
+                 class="form-control" formControlName="phone" id="phone" placeholder="Enter Phone">
+          <small class="form-text text-danger"
+                 *ngIf="rfCustomer.controls.phone.touched && rfCustomer.controls.phone?.errors?.required">Phải nhập trường này.</small>
+          <small class="form-text text-danger"
+                 *ngIf="rfCustomer.controls.phone.touched && rfCustomer.controls.phone?.errors?.pattern">
+            Phải đúng định dạng bao gồm: bắt đầu với +84, và theo sau là 9 đến 10 chữ số.</small>
+        </td>
+      </tr>
+      <tr>
+        <th></th>
+        <td><button type="submit" [disabled]="rfCustomer.invalid" class="btn btn-primary">Submit</button></td>
+      </tr>
+      </thead>
+    </table>
+  </form>
+</div>
