@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductService} from '../../service/product.service';
-import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {Product} from '../../model/product';
 import {FormControl, FormGroup} from '@angular/forms';
 
@@ -15,7 +15,8 @@ export class ProdutEditComponent implements OnInit {
   rfProduct: FormGroup;
 
   constructor(private productService: ProductService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -33,5 +34,6 @@ export class ProdutEditComponent implements OnInit {
 
   onSubmit() {
     this.productService.updateProduct(this.rfProduct.value);
+    this.router.navigateByUrl('/product/list');
   }
 }

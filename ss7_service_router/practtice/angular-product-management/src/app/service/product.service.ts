@@ -52,4 +52,13 @@ export class ProductService {
     this.products.find(item => item.id === product.id).price = product.price;
     this.products.find(item => item.id === product.id).description = product.description;
   }
+
+  deleteProduct(id: number) {
+    for (let i = 0; i < this.products.length; i++) {
+      if (this.products[i].id == id) {
+        this.products.splice(i, 1);
+        break;
+      }
+    }
+  }
 }
