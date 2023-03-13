@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Todo} from '../todo';
 import {FormControl} from '@angular/forms';
+import {ActivatedRoute} from '@angular/router';
 // tslint:disable-next-line:variable-name
 let _id = 1;
 
@@ -13,7 +14,7 @@ export class TodoComponent implements OnInit {
   todos: Todo[] = [];
   content = new FormControl();
 
-  constructor() {
+  constructor(private router: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -21,7 +22,6 @@ export class TodoComponent implements OnInit {
 
   change() {
     const value = this.content.value;
-    debugger
     if (value) {
       const todo: Todo = {
         id: _id++,

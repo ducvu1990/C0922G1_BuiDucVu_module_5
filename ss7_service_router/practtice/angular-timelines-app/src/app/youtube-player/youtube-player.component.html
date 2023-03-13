@@ -1,0 +1,10 @@
+<app-youtube-playlist></app-youtube-playlist>
+<div *ngIf="song; else tmpl">
+  <h2>Song name: {{song.song}}</h2>
+  <iframe width="560" height="315" [src]="getSrc()" frameborder="0" allow="autoplay; encrypted-media"
+          allowfullscreen></iframe>
+</div>
+
+<ng-template #tmpl>
+  <h1>Nothing To Player</h1>
+</ng-template>

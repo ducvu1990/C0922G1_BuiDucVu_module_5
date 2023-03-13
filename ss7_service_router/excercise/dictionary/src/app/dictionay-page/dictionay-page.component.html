@@ -1,0 +1,13 @@
+<h1>dictionay page</h1>
+<table>
+  <tr>
+    <th>No.</th>
+    <th>word</th>
+    <th>Detail</th>
+  </tr>
+  <tr *ngFor="let iWord of iWords; index as i">
+    <td>{{i+1}}</td>
+    <td>{{iWord.word}}</td>
+    <td><a type="button" routerLink="/iWord/{{iWord.word}}">Detail</a></td>
+  </tr>
+</table>

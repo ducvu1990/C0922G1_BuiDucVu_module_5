@@ -18,19 +18,19 @@
     </ul>
   </div>
   <div class="col-md-11 justify-content-center align-items-center d-flex">
-    <div class="card text-bg-dark px-0 justify-content-center align-items-center d-flex w-100 h-100 bg-transparent p-3"
+    <div class="card text-bg-white px-0 justify-content-center align-items-center d-flex w-100 h-100 bg-transparent p-3"
          style="background-color: rgba(0, 255, 0, 0.5);">
       <p>
         <button type="button"
                 class="btn btn-primary">
-          Add New Facility
+          Add New Customer
         </button>
       </p>
       <div class="row row-cols-1 row-cols-md-5 g-4">
 
         <table id="table123" class="table">
           <thead>
-          <tr>
+          <tr class="text-warning">
             <th scope="col">#</th>
             <th hidden scope="col">Id</th>
             <th scope="col">Name</th>
@@ -47,15 +47,19 @@
           </thead>
           <tbody>
 
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+          <tr *ngFor="let customer of customers; index as i" class="text-light">
+            <td>{{i+1}}</td>
+            <td>{{customer.name}}</td>
+            <td>{{customer.dateOfBirth}}</td>
+            <td *ngIf="customer.gender">
+              <ng-container *ngIf="customer.gender">Nam</ng-container>
+              <ng-container *ngIf="customer.gender == false">Nữ</ng-container>
+            </td>
+            <td>{{customer.idCard}}</td>
+            <td>{{customer.phoneNumber}}</td>
+            <td>{{customer.email}}</td>
+            <td>{{customer.customerType}}</td>
+            <td>{{customer.address}}</td>
             <td>
               <button type="button"
                       class="btn btn-primary">
@@ -72,8 +76,7 @@
 
           </tbody>
         </table>
-        <span><a>Trước</a>
-        </span>
+        <span><a>Trước</a></span>
         <span>/</span>
         <span></span>
         <span><a>Sau</a></span>

@@ -30,9 +30,8 @@
 
         <table id="table123" class="table">
           <thead>
-          <tr>
+          <tr class="text-warning">
             <th scope="col">#</th>
-            <th scope="col">Id</th>
             <th scope="col">Facility Name</th>
             <th scope="col">Customer Name</th>
             <th scope="col">Start Date</th>
@@ -44,15 +43,15 @@
           </thead>
           <tbody>
 
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+          <tr class="text-light" *ngFor="let contract of contracts; index as i">
+            <td>{{i+1}}</td>
+            <td>{{contract.facility}}</td>
+            <td>{{contract.customer}}</td>
+            <td>{{contract.startDate}}</td>
+            <td>{{contract.endDate}}</td>
+            <td>{{contract.deposit}}</td>
+            <td>{{contract.totalCost}}</td>
+            <td><{{contract.attachFacility}}/td>
             <td>
               <button type="button"
                       class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AddContractDetailModal">

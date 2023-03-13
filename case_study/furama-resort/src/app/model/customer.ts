@@ -17,5 +17,4 @@ export interface Customer {
 
   customerType: string;
 
-  contracts: string;
 }
