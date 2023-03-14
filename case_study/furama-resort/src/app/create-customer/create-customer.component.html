@@ -22,58 +22,81 @@
          style="background-color: rgba(0, 255, 0, 0.5);">
       <div class="row row-cols-1 row-cols-md-5 g-4">
 
-        <form class="form"  method="post">
+        <form class="form"  [formGroup]="rfCustomer" (ngSubmit)="onSubmit()">
           <table class="table">
+            <tr>
+              <th scope="col">Id</th>
+              <td>
+                <input formControlName="id" type="text" placeholder="nhập tên" >
+                <span style="color: red"
+                      *ngIf="rfCustomer.controls.id.touched && rfCustomer.controls.id?.errors?.required">Phải nhập trường này.</span>
+                <span style="color: red"
+                      *ngIf="rfCustomer.controls.id.touched && rfCustomer.controls.id?.errors?.pattern">Mã khách hàng không đúng định dạng.</span>
+              </td>
+
+            </tr>
             <thead>
             <tr>
               <th scope="col">Name</th>
               <td>
-                <input  required title=" Tên không đúng định dạng"
-                        type="text" placeholder="nhập tên" >
-                <span style="color: red" ></span>
+                <input formControlName="name" type="text" placeholder="nhập tên" >
+                <span style="color: red"
+                      *ngIf="rfCustomer.controls.name.touched && rfCustomer.controls.name?.errors?.required">Phải nhập trường này.</span>
               </td>
 
             </tr>
             <tr>
               <th scope="col">Birthday</th>
-              <td><input type="date" >
-                <span style="color: red" ></span>
+              <td><input type="date" formControlName="birthday">
+                <span style="color: red"
+                      *ngIf="rfCustomer.controls.birthday.touched && rfCustomer.controls.birthday?.errors?.required">Phải nhập trường này.</span>
+                <span style="color: red"
+                      *ngIf="rfCustomer.controls.birthday.touched && rfCustomer.controls.birthday?.errors?.invalidAge">Ngày sinh không hợp lệ.</span>
               </td>
             </tr>
             <tr>
               <th scope="col">Gender</th>
               <td>
-                <input type="radio" >Male
-                <input type="radio" >Female
+                <input type="radio" formControlName="gender">Male
+                <input type="radio" formControlName="gender">Female
               </td>
             </tr>
             <tr>
               <th scope="col">Id Card</th>
               <td>
-                <input type="text" ><br>
-                <span style="color: red" ></span>
+                <input type="text" formControlName="idCard"><br>
+                <span style="color: red"
+                      *ngIf="rfCustomer.controls.idCard.touched && rfCustomer.controls.idCard?.errors?.required">Phải nhập trường này.</span>
+                <span style="color: red"
+                      *ngIf="rfCustomer.controls.idCard.touched && rfCustomer.controls.idCard?.errors?.pattern">Id Card không hợp lệ.</span>
               </td>
             </tr>
             <tr>
               <th scope="col">Phone</th>
               <td>
-                <input type="text" ><br>
-                <span style="color: red" ></span>
+                <input type="text" formControlName="phone"><br>
+                <span style="color: red"
+                      *ngIf="rfCustomer.controls.phone.touched && rfCustomer.controls.phone?.errors?.required">Phải nhập trường này.</span>
+                <span style="color: red"
+                      *ngIf="rfCustomer.controls.phone.touched && rfCustomer.controls.phone?.errors?.pattern">Số điện thoai không hợp lệ.</span>
               </td>
             </tr>
             <tr>
               <th scope="col">Email</th>
               <td>
-
-                <input type="text" ><br>
-                <span style="color: red" ></span>
+                <input type="text" formControlName="email"><br>
+                <span style="color: red"
+                      *ngIf="rfCustomer.controls.email.touched && rfCustomer.controls.email?.errors?.required">Phải nhập trường này.</span>
+                <span style="color: red"
+                      *ngIf="rfCustomer.controls.email.touched && rfCustomer.controls.email?.errors?.email">Email không hợp lệ.</span>
               </td>
             </tr>
             <tr>
               <th scope="col">Customer Type</th>
               <td>
-                <select >
-                  <option >
+                <select formControlName="customerType">
+                  <option *ngFor="let customerType of customerTypes">
+                    {{customerType}}
                   </option>
                 </select>
               </td>
@@ -81,8 +104,9 @@
             <tr>
               <th scope="col">Address</th>
               <td>
-                <input >
-                <span ></span>
+                <input formControlName="address">
+                <span style="color: red"
+                            *ngIf="rfCustomer.controls.email.touched && rfCustomer.controls.email?.errors?.required">Phải nhập trường này.</span>
               </td>
             </tr>
             <tr>

@@ -48,73 +48,97 @@
     <div class="card text-bg-dark px-0 justify-content-center align-items-center d-flex w-100 h-100 bg-transparent p-3"
          style="background-color: rgba(0, 255, 0, 0.5);">
       <div class="row row-cols-1 row-cols-md-5 g-4">
-        <form  method="post">
+        <form  [formGroup]="rfFacility" (ngSubmit)="onSubmit()">
           <div class="modal-body">
             <table class="table">
               <thead>
               <tr>
                 <th scope="col">Name</th>
-                <td><input type="text" id="createName" >
-                  <span style="color: red" ></span>
+                <td><input type="text" id="createName" formControlName="name">
+                  <span style="color: red"
+                        *ngIf="rfFacility.controls.name.touched && rfFacility.controls.name?.errors?.required">Phải nhập trường này.</span>
+                  <span style="color: red"
+                        *ngIf="rfFacility.controls.name.touched && rfFacility.controls.name?.errors?.pattern">Tên không được chứa số.</span>
                 </td>
               </tr>
               <tr>
                 <th scope="col">Area</th>
-                <td><input type="text" id="createArea" >
-                  <span ></span>
+                <td><input type="text" id="createArea" formControlName="area">
+                  <span style="color: red"
+                        *ngIf="rfFacility.controls.area.touched && rfFacility.controls.area?.errors?.required">Phải nhập trường này.</span>
                 </td>
               </tr>
               <tr>
-                <th scope="col">Aost</th>
-                <td><input type="text" id="createCost" >
-                  <span ></span>
+                <th scope="col">Cost</th>
+                <td><input type="text" id="createCost" formControlName="cost">
+                  <span style="color: red"
+                        *ngIf="rfFacility.controls.cost.touched && rfFacility.controls.cost?.errors?.required">Phải nhập trường này.</span>
                 </td>
               </tr>
               <tr>
                 <th scope="col">Max People</th>
-                <td><input type="text" id="createMaxPeople" >
-                  <span ></span>
+                <td><input type="text" id="createMaxPeople" formControlName="maxPeople">
+                  <span style="color: red"
+                        *ngIf="rfFacility.controls.maxPeople.touched && rfFacility.controls.maxPeople?.errors?.required">Phải nhập trường này.</span>
                 </td>
               </tr>
               <tr>
                 <th scope="col">Standard Room</th>
-                <td><input type="text" id="createStandardRoom" ></td>
+                <td><input type="text" id="createStandardRoom" formControlName="standardRoom"></td>
               </tr>
               <tr>
                 <th scope="col">Description Other Convenience</th>
-                <td><input type="text" id="createDescriptionOtherConvenience"></td>
+                <td><input type="text" id="createDescriptionOtherConvenience" formControlName="descriptionOtherConvenience">
+                  <span style="color: red"
+                        *ngIf="rfFacility.controls.standardRoom.touched && rfFacility.controls.standardRoom?.errors?.required">Phải nhập trường này.</span>
+                </td>
               </tr>
               <tr>
                 <th scope="col">Pool Area</th>
-                <td><input type="text" id="createPoolArea" >
-                  <span ></span>
+                <td><input type="text" id="createPoolArea" formControlName="poolArea">
+                  <span style="color: red"
+                        *ngIf="rfFacility.controls.poolArea.touched && rfFacility.controls.poolArea?.errors?.required">Phải nhập trường này.</span>
+                  <span style="color: red"
+                        *ngIf="rfFacility.controls.poolArea.touched && rfFacility.controls.poolArea?.errors?.pattern">Phải là số nguyên dương.</span>
                 </td>
               </tr>
               <tr>
                 <th scope="col">Number Of Floors</th>
-                <td><input type="text" id="createNumberOfFloors" >
-                  <span></span></td>
+                <td><input type="text" id="createNumberOfFloors" formControlName="numberOfFloors">
+                  <span style="color: red"
+                        *ngIf="rfFacility.controls.numberOfFloors.touched && rfFacility.controls.numberOfFloors?.errors?.required">Phải nhập trường này.</span>
+                  <span style="color: red"
+                        *ngIf="rfFacility.controls.numberOfFloors.touched && rfFacility.controls.numberOfFloors?.errors?.pattern">Phải là số nguyên dương.</span>
+                </td>
               </tr>
               <tr>
                 <th scope="col">Facility Free</th>
-                <td><input type="text" id="createFacilityFree" ></td>
+                <td><input type="text" id="createFacilityFree" formControlName="facilityFree">
+                  <span style="color: red"
+                        *ngIf="rfFacility.controls.facilityFree.touched && rfFacility.controls.facilityFree?.errors?.required">Phải nhập trường này.</span></td>
               </tr>
               <tr>
                 <th scope="col">Facility Type</th>
                 <td>
-                  <select  id="createFaType" >
-                    <option >
+                  <select  id="createFaType" formControlName="facilityType">
+                    <option *ngFor="let facilityType of facilityTypes">
+                      {{facilityType}}
                     </option>
                   </select>
+                  <span style="color: red"
+                        *ngIf="rfFacility.controls.facilityType.touched && rfFacility.controls.facilityType?.errors?.required">Phải nhập trường này.</span>
                 </td>
               </tr>
               <tr>
                 <th scope="col">Rent Type</th>
                 <td>
-                  <select  id="createReType">
-                    <option >
+                  <select  id="createReType" formControlName="rentType">
+                    <option *ngFor="let rentType of rentTypes">
+                      {{rentType}}
                     </option>
                   </select>
+                  <span style="color: red"
+                        *ngIf="rfFacility.controls.rentType.touched && rfFacility.controls.rentType?.errors?.required">Phải nhập trường này.</span>
                 </td>
               </tr>
               </thead>
