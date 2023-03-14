@@ -6,24 +6,24 @@
     <table>
       <tr>
         <th>Name:</th>
-        <th><input type="text" formControlName="name" class="form-control"></th>
+        <td><input type="text" formControlName="name" class="form-control"></td>
       </tr>
       <tr>
         <th>Price</th>
-        <th><input type="text" formControlName="price" class="form-control"></th>
+        <td><input type="text" formControlName="price" class="form-control"></td>
       </tr>
       <tr>
         <th>Description</th>
-        <th><input type="text" formControlName="description" class="form-control"></th>
+        <td><input type="text" formControlName="description" class="form-control"></td>
       </tr>
       <tr>
         <th>Category</th>
-        <th>
+        <td>
           <select class="form-control" formControlName="category">
             <option  *ngFor="let category of categorys"
             [value]="category">{{category.name}}</option>
           </select>
-        </th>
+        </td>
       </tr>
       <tr>
         <th></th>

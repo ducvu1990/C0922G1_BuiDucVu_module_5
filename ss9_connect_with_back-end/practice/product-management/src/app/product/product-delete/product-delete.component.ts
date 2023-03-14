@@ -9,7 +9,11 @@ import {FormControl, FormGroup} from '@angular/forms';
   styleUrls: ['./product-delete.component.css']
 })
 export class ProductDeleteComponent implements OnInit {
-  productForm: FormGroup;
+  productForm: FormGroup = new FormGroup({
+    name: new FormControl(),
+    price: new FormControl(),
+    description: new FormControl()
+  });
   id: number;
 
   constructor(private productService: ProductService,
@@ -18,12 +22,6 @@ export class ProductDeleteComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.id = +paramMap.get('id');
       const product = this.getProduct(this.id);
-      this.productForm = new FormGroup({
-        id: new FormControl(product.id),
-        name: new FormControl(product.name),
-        price: new FormControl(product.price),
-        description: new FormControl(product.description)
-      });
     });
   }
 
@@ -31,10 +29,21 @@ export class ProductDeleteComponent implements OnInit {
   }
 
   getProduct(id: number) {
-    return  this.productService.findProductById(id);
+    return this.productService.findProductById(id).subscribe(productes => {
+      this.productForm = new FormGroup({
+        name: new FormControl(productes.name),
+        price: new FormControl(productes.price),
+        description: new FormControl(productes.description)
+      });
+    });
   }
+
   deleteProduct(id: number) {
-    this.productService.deleteProduct(id);
-    this.router.navigateByUrl('/product/list');
+    this.productService.deleteProduct(id).subscribe(() => {
+      this.router.navigateByUrl('/product/list');
+      alert('Xóa thành công.');
+    }, error => {
+      console.log(error);
+    });
   }
 }
