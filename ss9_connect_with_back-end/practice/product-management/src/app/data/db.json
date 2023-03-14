@@ -39,6 +39,26 @@
         "id": 2,
         "name": "Samsung"
       }
+    },
+    {
+      "name": "IPhone 11",
+      "price": 1560000,
+      "description": "Like new",
+      "category": {
+        "id": 2,
+        "name": "Samsung"
+      },
+      "id": 4
+    },
+    {
+      "name": "IPhone 11",
+      "price": 1560000,
+      "description": "Like new",
+      "category": {
+        "id": 2,
+        "name": "Samsung"
+      },
+      "id": 5
     }
   ]
 }
