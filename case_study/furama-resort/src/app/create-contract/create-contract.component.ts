@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
@@ -7,42 +7,50 @@ import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/form
   styleUrls: ['./create-contract.component.css']
 })
 export class CreateContractComponent implements OnInit {
-  date: Date;
+  abc = new Date();
+  startsDate = new Date();
   rfContract: FormGroup;
-  customers: string[] = ['Trần Văn A', 'Trần Văn B'];
-  facilitys: string[] = ['Villa', 'House', 'Room'];
-  employees: string[] = ['Trần Văn C', 'Trần Văn D'];
+  customers: string[];
+  facilitys: string[];
+  employees: string[];
 
   constructor() {
   }
 
   ngOnInit(): void {
+    this.customers = ['Trần Văn A', 'Trần Văn B'];
+    this.facilitys = ['Villa', 'House', 'Room'];
+    this.employees = ['Trần Văn C', 'Trần Văn D'];
     this.rfContract = new FormGroup({
       deposit: new FormControl('', [Validators.required, Validators.pattern('^[1-9]\\d*$')]),
-      startDate: new FormControl('', [Validators.required, this.checkStartDate]),
-      endDate: new FormControl('', [Validators.required, this.checkEndDate]),
+      startDate: new FormControl('', [Validators.required, this.checkStartDate.bind(this)]),
+      endDate: new FormControl('', [Validators.required, this.checkEndDate.bind(this)]),
+      customers: new FormControl(),
+      facilitys: new FormControl(),
+      employees: new FormControl()
     });
+    console.log(this.abc);
   }
 
   onSubmit() {
+    debugger
     console.log(this.rfContract.value);
   }
 
   checkStartDate(control: AbstractControl) {
-    const startDate = control.value;
-    this.date = startDate;
-    const today: Date = new Date();
-    if (today.getFullYear() < startDate.getFullYear() && today.getDate() < startDate.getDate() && today.getMonth() < startDate.getMonth()) {
-      return {invalidStarDate: true};
+    const startDate = new Date(control.value);
+    this.startsDate = startDate;
+    const today = new Date();
+    if (today.getDate() > startDate.getDate()) {
+      return {invalidstartdate: true};
     }
     return null;
   }
 
   checkEndDate(control: AbstractControl) {
-    const endDate = control.value;
-    if (this.date.getFullYear() < endDate.getFullYear() && this.date.getDate() < endDate.getDate() &&
-      this.date.getMonth() < endDate.getMonth()) {
-      return {invalidEndDate: true};
+    const endDate = new Date(control.value);
+    if (this.startsDate.getDate() > endDate.getDate()) {
+      return {invalidenddate: true};
     }
     return null;
   }

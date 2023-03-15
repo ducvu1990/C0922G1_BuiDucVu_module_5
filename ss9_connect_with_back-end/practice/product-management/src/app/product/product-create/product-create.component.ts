@@ -16,6 +16,7 @@ export class ProductCreateComponent implements OnInit {
     name: new FormControl(),
     price: new FormControl(),
     description: new FormControl(),
+    category: new FormControl()
   });
   categorys: Category[];
 

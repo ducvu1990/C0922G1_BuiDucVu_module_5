@@ -23,9 +23,9 @@
          style="background-color: rgba(0, 255, 0, 0.5);">
       <div class="row row-cols-1 row-cols-md-5 g-4">
 
-        <form [formGroup]="rfContract" (ngSubmit)="onSubmit()">
+        <form [formGroup]="rfContract" *ngIf="rfContract" (ngSubmit)="onSubmit()">
           <div class="modal-body">
-            <table class="table">
+            <table class="table text-white">
               <thead>
               <tr>
                 <th scope="col">Start Date</th>
@@ -34,7 +34,7 @@
                         *ngIf="rfContract.controls.startDate.touched && rfContract.controls.startDate?.errors?.required">
                     Phải nhập trường này.</span>
                   <span style="color: red"
-                        *ngIf="rfContract.controls.startDate.touched && rfContract.controls.startDate?.errors?.invalidStarDate">
+                        *ngIf="rfContract.controls.startDate.touched && rfContract.controls.startDate?.errors?.invalidstartdate">
                     Ngày làm hợp đồng không hợp lệ.</span>
                 </td>
               </tr>
@@ -45,7 +45,7 @@
                         *ngIf="rfContract.controls.endDate.touched && rfContract.controls.endDate?.errors?.required">
                     Phải nhập trường này.</span>
                   <span style="color: red"
-                        *ngIf="rfContract.controls.endDate.touched && rfContract.controls.endDate?.errors?.invalidEndDate">
+                        *ngIf="rfContract.controls.endDate.touched && rfContract.controls.endDate?.errors?.invalidenddate">
                     Ngày kết thúc hợp đồng không hợp lệ.</span>
                 </td>
               </tr>
@@ -62,9 +62,9 @@
               <tr>
                 <th scope="col">Customer</th>
                 <td>
-                  <select id="customer" formControlName="customer">
+                  <select id="customer" formControlName="customers">
                     <option value="" disabled selected>Choose Customer</option>
-                    <option *ngFor="let customer of customers">{{customer}}
+                    <option *ngFor="let customer of customers" [ngValue]="customer">{{customer}}
                     </option>
                   </select>
                 </td>
@@ -72,9 +72,9 @@
               <tr>
                 <th scope="col">Facility</th>
                 <td>
-                  <select id="facility" formControlName="facility">
+                  <select id="facility" formControlName="facilitys">
                     <option value="" disabled selected>Choose Facility</option>
-                    <option *ngFor="let facility of facilitys">
+                    <option *ngFor="let facility of facilitys" [ngValue]="facility">{{facility}}
                     </option>
                   </select>
                 </td>
@@ -82,9 +82,9 @@
               <tr>
                 <th scope="col">Employee</th>
                 <td>
-                  <select id="employee" formControlName="employee">
+                  <select id="employee" formControlName="employees">
                     <option value="" disabled selected>Choose Employee</option>
-                    <option *ngFor="let employee of employees">
+                    <option *ngFor="let employee of employees" [ngValue]="employee">{{employees}}
                     </option>
                   </select>
                 </td>
@@ -95,29 +95,11 @@
               </tr>
               </thead>
             </table>
-            <button type="button" class="btn btn-sm btn-primary" onclick="showFormCreateContractDetail()">+
-            </button>
-            <table id="addContractDetail">
-              <thead>
-              <tr>
-                <td>
-                  <input type="checkbox"/>
-                </td>
-                <td>
-                  <input type="text">
-                </td>
-                <td>
-                  <input style="width: 100px" type="number" id="quantityAttachFacility"/>
-                </td>
-              </tr>
-              </thead>
-            </table>
           </div>
 
-          <div class="modal-footer">
-            <button type="button" class="btn btn-sm btn-secondary">Cancel
-            </button>
-            <button type="button" class="btn btn-sm btn-primary">Save</button>
+          <div>
+            <button type="button" class="btn btn-sm btn-secondary">Cancel</button>
+            <button type="submit" [disabled]="rfContract.invalid"  class="btn btn-sm btn-primary">Save</button>
           </div>
         </form>
 

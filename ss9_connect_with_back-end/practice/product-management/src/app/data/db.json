@@ -18,7 +18,10 @@
       "name": "IPhone 12",
       "price": 2400000,
       "description": "New",
-      "category": "[object Object]",
+      "category": {
+        "id": 3,
+        "name": "LG"
+      },
       "id": 1
     },
     {

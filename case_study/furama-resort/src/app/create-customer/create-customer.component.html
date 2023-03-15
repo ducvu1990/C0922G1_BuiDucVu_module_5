@@ -22,7 +22,7 @@
          style="background-color: rgba(0, 255, 0, 0.5);">
       <div class="row row-cols-1 row-cols-md-5 g-4">
 
-        <form class="form"  [formGroup]="rfCustomer" (ngSubmit)="onSubmit()">
+        <form class="form text-white"  [formGroup]="rfCustomer" (ngSubmit)="onSubmit()">
           <table class="table">
             <tr>
               <th scope="col">Id</th>
@@ -33,7 +33,6 @@
                 <span style="color: red"
                       *ngIf="rfCustomer.controls.id.touched && rfCustomer.controls.id?.errors?.pattern">Mã khách hàng không đúng định dạng.</span>
               </td>
-
             </tr>
             <thead>
             <tr>
@@ -43,7 +42,6 @@
                 <span style="color: red"
                       *ngIf="rfCustomer.controls.name.touched && rfCustomer.controls.name?.errors?.required">Phải nhập trường này.</span>
               </td>
-
             </tr>
             <tr>
               <th scope="col">Birthday</th>
@@ -111,7 +109,7 @@
             </tr>
             <tr>
               <th scope="col"></th>
-              <td><input id="btnSave" type="submit" value="Add new customers"></td>
+              <td><button id="btnSave" type="submit" >Add new customers</button></td>
             </tr>
             </thead>
           </table>

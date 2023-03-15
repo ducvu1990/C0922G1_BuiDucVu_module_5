@@ -15,7 +15,7 @@ export class ProductEditComponent implements OnInit {
     name: new FormControl(),
     price: new FormControl(),
     description: new FormControl(),
-    category: new FormControl()
+    categorys: new FormControl()
   });
 id: number;
 categorys: Category[];
@@ -42,7 +42,7 @@ categorys: Category[];
         name: new FormControl(productes.name),
         price: new FormControl(productes.price),
         description: new FormControl(productes.description),
-        category: new FormControl(productes.category)
+        categorys: new FormControl(this.categorys.filter(c => c.id === productes.category.id)[0])
       });
     });
   }
